@@ -1,9 +1,7 @@
 package com.example.aula4
 
-import android.R.attr.text
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -69,21 +67,32 @@ fun MinhaTela() {
 
 @Preview(showBackground = true)
 @Composable
-fun Formulario(){
+fun Formulario() {
+
+    var nome by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+
     Column {
         Text(" - CADASTRO - ")
 
         TextField(
-            value = "",
-            onValueChange = {},
+            value = nome,
+            onValueChange = { nome = it },
             placeholder = { Text("Nome:") }
         )
 
+        TextField(
+            value = email,
+            onValueChange = { email = it },
+            placeholder = { Text("Email:") }
+        )
+
         Button(
-            onClick = { }
+            onClick = {
+                Log.d("FORMULÁRIO", "Nome: $nome")
+                Log.d("FORMULARIO", "Email: $email")
+            }
         ) {
-            val nome = editNome.text.toString()
-            val email = editEmail.text.toString()
             Text("Enviar")
         }
     }
